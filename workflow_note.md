@@ -9,6 +9,8 @@ http://popozhu.github.io/2013/11/06/tmux%EF%BC%8C%E4%B9%B1%E7%A0%81%E5%B7%B2%E6%
 ### vim亂碼
 http://blog.csdn.net/keepliving/article/details/5623362j
 
+### oh my tmux 
+https://github.com/gpakosz/.tmux
 
 # linux shortcuts
 https://www.maketecheasier.com/useful-shortcut-keys-in-ubuntu/
