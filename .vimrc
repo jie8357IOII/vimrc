@@ -1,9 +1,3 @@
-" File              : /home/robin/.vimrc
-" Author            : Jayce Li <itriA40520@itri.org.tw>
-" Date              : 28.11.2017
-" Last Modified Date: 29.11.2017
-" Last Modified By  : Jayce Li <itriA40520@itri.org.tw>
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -13,8 +7,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Plugin 'Valloric/YouCompleteMe'
-" lugin 'Shougo/neocomplete.vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -22,11 +16,14 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
+"""python formatter"""
 Plugin 'tell-k/vim-autopep8'
+"""code syntax check"""
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'benmills/vimux'
 
 call vundle#end()            " required
 syntax on
@@ -57,6 +54,9 @@ set listchars=tab:T>
 set clipboard=unnamed
 set paste
 
+noremap <silent> vv <C-w>v
+map <Leader>vp :VimuxPromptCommand<CR>
+
 "缩进指示线"
 let g:indentLine_char='┆'
 let g:indentLine_enabled = 1
@@ -65,14 +65,41 @@ let g:indentLine_enabled = 1
 let g:autopep8_disable_show_diff=1
 ""
 
+""""""""syntasic setting""""
 
-""" navie split window """"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+""""""""YCM setting""""""""""
+let g:ycm_python_binary_path = 'python'
+
+""""""""neo complete setting"""""
+let g:neocomplete#enable_at_startup=1
+
+
+""" key mapping"""
+" navie split window "
+let mapleader = ","
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 map - <C-W>-
 map + <C-W>+
+map <C-n> :NERDTreeToggle<CR>
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+" Preserve indentation while pasting text from the OS X clipboard 在粘贴OS X剪贴板中的文本时保留缩进
+noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+""""""""""""""""""
 
 "" Open new split panes to right and bottom ""
 set splitbelow
@@ -95,7 +122,6 @@ augroup END
 " Exit Vim when the only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-map <C-n> :NERDTreeToggle<CR>
 
 " For serious
 let NERDTreeShowHidden=1

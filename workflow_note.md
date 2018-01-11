@@ -3,6 +3,10 @@
 ## 詳盡教學
 https://www.kancloud.cn/kancloud/tmux
 
+
+### Tmux and Vim - even better together
+https://blog.bugsnag.com/tmux-and-vim/
+
 ### tmux如果有亂碼
 http://popozhu.github.io/2013/11/06/tmux%EF%BC%8C%E4%B9%B1%E7%A0%81%E5%B7%B2%E6%88%90%E5%BE%80%E4%BA%8B/
 
